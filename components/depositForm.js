@@ -21,8 +21,8 @@ export function DepositForm() {
 				},
 			})
 			.then((response) => {
-				setResponse(response.data.success);
-				clearForm(response.data.success);
+				setResponse('Deposit successful!');
+				clearForm();
 
 				if (response.data.success) {
 					setUser((prevUser) => ({
@@ -33,8 +33,9 @@ export function DepositForm() {
 			})
 			.catch((error) => {
 				if (error.response) {
-					setResponse(error.response.data.success);
+					setResponse('Error Depositing!');
 				} else {
+					setResponse('Deposit Error!');
 					console.error('Error depositing:', error);
 				}
 			});
@@ -42,14 +43,13 @@ export function DepositForm() {
 
 	function clearForm() {
 		setAmount(0);
-		setResponse(null);
 	}
 
 	return user ? (
 		<>
-			<div>Balance: ${user.balance}</div>
+			<h5>Balance: ${user.balance}</h5>
 			<form id="deposit" onSubmit={(e) => handleSubmit(e)}>
-				Amount
+				Amount:
 				<br />
 				<input
 					type="number"
@@ -72,8 +72,17 @@ export function DepositForm() {
 				)}
 				<br />
 				{response && (
-					<div className="alert alert-success" role="alert">
-						{response}
+					<div>
+						<br />
+						{response ? (
+							<div className="alert alert-success" role="alert">
+								{response}
+							</div>
+						) : (
+							<div className="alert alert-danger" role="alert">
+								{response}
+							</div>
+						)}
 					</div>
 				)}
 			</form>

@@ -1,7 +1,7 @@
+require('dotenv').config();
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
-const uri =
-	'mongodb+srv://jake:he5Dl8yxPqB15YsV@cluster0.taydgpr.mongodb.net/badBank?tls=true';
+const uri = process.env.DATABASE_URL;
 const dbName = 'badBank';
 let db = null;
 

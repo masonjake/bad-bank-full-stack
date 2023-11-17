@@ -48,7 +48,8 @@ export function TransferForm() {
 
 	return user ? (
 		<>
-			<div>Balance: ${user.balance}</div>
+			<h5>Balance: ${user.balance}</h5>
+
 			<form id="transfer" onSubmit={(e) => handleSubmit(e)}>
 				Recipient Email:
 				<br />
